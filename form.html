@@ -8,7 +8,6 @@
       user = document.getElementById('user').value;
       if (comment != '' && rating != '' && user != '') {
         let data = { 'comments': comment, 'rating': rating, 'user': user }
-        alert(JSON.stringify(data))
         fetch("http://localhost:8090/feedback", {
           method: "POST",
           headers: new Headers({ 'content-type': 'application/json' }),
