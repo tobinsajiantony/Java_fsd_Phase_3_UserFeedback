@@ -1,0 +1,46 @@
+<html>
+
+<head>
+  <script>
+    function submitData() {
+      comment = document.getElementById('comments').value;
+      rating = document.getElementById('rating').value;
+      user = document.getElementById('user').value;
+      if (comment != '' && rating != '' && user != '') {
+        let data = { 'comments': comment, 'rating': rating, 'user': user }
+        alert(JSON.stringify(data))
+        fetch("http://localhost:8090/feedback", {
+          method: "POST",
+          headers: new Headers({ 'content-type': 'application/json' }),
+          body: JSON.stringify(data)
+        }).then(res => {
+          alert("Request complete!");
+        });
+      }
+      else if (comment == '') {
+        alert('Please Enter Comment');
+      }
+      else if (rating == '') {
+        alert('Please Enter Rating');
+      }
+      else {
+        alert('Please Enter User');
+      }
+
+    }
+  </script>
+</head>
+
+<body>
+  <form>
+    <label for="comments">Comments:</label><br>
+    <input type="text" id="comments" name="comments"><br><br>
+    <label for="rating">Rating:</label><br>
+    <input type="text" id="rating" name="rating"><br><br>
+    <label for="user">User:</label><br>
+    <input type="text" id="user" name="user"><br><br>
+    <input type="button" onclick="submitData()" value="Submit">
+  </form>
+</body>
+
+</html>
